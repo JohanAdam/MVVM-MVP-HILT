@@ -18,7 +18,7 @@ data class MangaNetworkEntity(
 
     @SerializedName("mal_id")
     @Expose
-    var id: String,
+    var id: Int,
 
     @SerializedName("url")
     @Expose

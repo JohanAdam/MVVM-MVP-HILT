@@ -11,7 +11,7 @@ data class MangaList(
 )
 
 data class Manga(
-    var id: String,
+    var id: Int,
     val url: String,
     val image_url: String,
     val title: String,
