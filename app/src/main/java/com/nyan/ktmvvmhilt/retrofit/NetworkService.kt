@@ -5,7 +5,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface MangaRetrofit {
+interface NetworkService {
 
     @GET("search/anime")
     suspend fun getAnimeList(
