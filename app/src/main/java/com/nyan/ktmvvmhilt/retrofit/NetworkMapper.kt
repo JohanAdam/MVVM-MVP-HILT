@@ -41,7 +41,7 @@ constructor() : EntityMapper<MangaNetworkEntity, Manga> {
         )
     }
 
-    fun mapFromEntityList(entities: List<MangaNetworkEntity>): List<Manga> {
-        return entities.map { mapFromEntity(it) }
+    fun mapFromEntityList(entities: MangaListNetworkEntity): List<Manga> {
+        return entities.result.map { mapFromEntity(it) }
     }
 }

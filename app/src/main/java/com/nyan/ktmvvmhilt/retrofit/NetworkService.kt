@@ -9,6 +9,6 @@ interface NetworkService {
 
     @GET("search/anime")
     suspend fun getAnimeList(
-        @Query("rated") rated: String): MangaList
+        @Query("rated") rated: String): MangaListNetworkEntity
 
 }
