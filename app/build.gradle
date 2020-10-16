@@ -46,14 +46,18 @@ dependencies {
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
 
     def hilt_viewmodels = "1.0.0-alpha01"
-    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_viewmodels"
-    kapt "androidx.hilt:hilt-compiler:$hilt_viewmodels"
+//    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_viewmodels"
+//    kapt "androidx.hilt:hilt-compiler:$hilt_viewmodels"
+    implementation "com.google.dagger:hilt-android:2.28-alpha"
+    kapt "com.google.dagger:hilt-android-compiler:2.28-alpha"
 
+    def retrofit_version = "2.5.0"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-
 }
 
 kapt {
