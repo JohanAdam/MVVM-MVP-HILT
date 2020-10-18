@@ -35,7 +35,7 @@ constructor(
 
         try {
             //Get from network.
-            val networkManga = networkService.getAnimeList()
+            val networkManga = networkService.getAnimeList("rx")
 
             Log.d(TAG, "getManga : " + networkManga.result)
 

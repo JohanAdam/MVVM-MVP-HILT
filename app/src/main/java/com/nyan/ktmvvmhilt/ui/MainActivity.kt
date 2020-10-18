@@ -2,6 +2,8 @@ package com.nyan.ktmvvmhilt.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.method.MovementMethod
+import android.text.method.ScrollingMovementMethod
 import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
@@ -22,6 +24,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        tv_text.movementMethod = ScrollingMovementMethod()
 
         subscribeObservers()
         viewModel.setStateEvent(MainStateEvent.GetMangaEvents)

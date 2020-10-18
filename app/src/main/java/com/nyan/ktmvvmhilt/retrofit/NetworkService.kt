@@ -7,7 +7,8 @@ import retrofit2.http.Query
 
 interface NetworkService {
 
-    @GET("search/anime?rated=g")
-    suspend fun getAnimeList(): MangaListNetworkEntity
+    @GET("search/anime")
+    suspend fun getAnimeList(
+        @Query("rated") rated: String?): MangaListNetworkEntity
 
 }
