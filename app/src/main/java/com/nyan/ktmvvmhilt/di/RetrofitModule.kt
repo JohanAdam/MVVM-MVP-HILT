@@ -7,6 +7,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -23,17 +25,28 @@ object RetrofitModule {
             .create()
     }
 
+    private fun getClient(): OkHttpClient {
+        val interceptor = HttpLoggingInterceptor()
+        interceptor.apply {
+            interceptor.level = HttpLoggingInterceptor.Level.BODY
+        }
+        return  OkHttpClient.Builder()
+            .addInterceptor(interceptor)
+            .build()
+    }
+
     @Singleton
     @Provides
     fun providerRetrofit(gson: Gson): Retrofit.Builder {
         return Retrofit.Builder()
             .baseUrl("https://api.jikan.moe/v3/")
+            .client(getClient())
             .addConverterFactory(GsonConverterFactory.create(gson))
     }
 
     @Singleton
     @Provides
-    fun provideMangaService(retrofit: Retrofit.Builder): NetworkService {
+    fun provideNetworkService(retrofit: Retrofit.Builder): NetworkService {
         return retrofit
             .build()
             .create(NetworkService::class.java)

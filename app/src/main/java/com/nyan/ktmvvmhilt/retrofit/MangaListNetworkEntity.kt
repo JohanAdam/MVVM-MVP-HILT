@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName
  */
 
 data class MangaListNetworkEntity(
-    @SerializedName("result")
+    @SerializedName("results")
     @Expose
     var result: List<MangaNetworkEntity>
 )

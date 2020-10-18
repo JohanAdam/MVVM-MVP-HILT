@@ -1,5 +1,6 @@
 package com.nyan.ktmvvmhilt.repository
 
+import android.util.Log
 import com.nyan.ktmvvmhilt.di.RetrofitModule
 import com.nyan.ktmvvmhilt.model.Manga
 import com.nyan.ktmvvmhilt.retrofit.NetworkMapper
@@ -21,7 +22,11 @@ constructor(
     private val cacheMapper: CacheMapper,
     private val networkMapper: NetworkMapper) {
 
+    private val TAG = "MainRepository"
+
     suspend fun getManga(): Flow<DataState<List<Manga>>> = flow {
+        Log.d(TAG, "getManga")
+
         //Show loading.
         emit(DataState.Loading)
 
@@ -30,7 +35,10 @@ constructor(
 
         try {
             //Get from network.
-            val networkManga = networkService.getAnimeList("g")
+            val networkManga = networkService.getAnimeList()
+
+            Log.d(TAG, "getManga : " + networkManga.result)
+
             //Convert network model > domain model.
             val mangas = networkMapper.mapFromEntityList(networkManga)
             //Insert to db one by one.
@@ -42,6 +50,7 @@ constructor(
             //Show success with saved data.
             emit(DataState.Success(cacheMapper.mapFromEntityList(cacheMangas)))
         } catch (e: Exception) {
+            e.printStackTrace()
             //Show error.
             emit(DataState.Error(e))
         }
